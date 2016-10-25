@@ -1,13 +1,14 @@
 package com.codepath.apps.restclienttemplate;
 
-import org.scribe.builder.api.Api;
-import org.scribe.builder.api.FlickrApi;
-
 import android.content.Context;
 
 import com.codepath.oauth.OAuthBaseClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
+
+import org.scribe.builder.api.Api;
+import org.scribe.builder.api.TwitterApi;
 
 /*
  * 
@@ -22,11 +23,11 @@ import com.loopj.android.http.RequestParams;
  * 
  */
 public class RestClient extends OAuthBaseClient {
-	public static final Class<? extends Api> REST_API_CLASS = FlickrApi.class; // Change this
-	public static final String REST_URL = "http://api.flickr.com/services"; // Change this, base API URL
-	public static final String REST_CONSUMER_KEY = "SOME_KEY";       // Change this
-	public static final String REST_CONSUMER_SECRET = "SOME_SECRET"; // Change this
-	public static final String REST_CALLBACK_URL = "oauth://cprest"; // Change this (here and in manifest)
+	public static final Class<? extends Api> REST_API_CLASS = TwitterApi.class; // Change this
+	public static final String REST_URL = "https://api.twitter.com/1.1"; // Change this, base API URL
+	public static final String REST_CONSUMER_KEY = "vIyYpblBHHcDFmLhXwmx6rGeE";       // Change this
+	public static final String REST_CONSUMER_SECRET = "YazISOfxDe5nAoVllWPyOhmbbnzPhZTj9aIEmFRPEDeRnb8Wju"; // Change this
+	public static final String REST_CALLBACK_URL = "oauth://codepathtweets"; // Change this (here and in manifest)
 
 	public RestClient(Context context) {
 		super(context, REST_API_CLASS, REST_URL, REST_CONSUMER_KEY, REST_CONSUMER_SECRET, REST_CALLBACK_URL);
@@ -50,4 +51,10 @@ public class RestClient extends OAuthBaseClient {
 	 *    i.e client.get(apiUrl, params, handler);
 	 *    i.e client.post(apiUrl, params, handler);
 	 */
+	public void getHomeTimeline(int page, JsonHttpResponseHandler handler) {
+		String apiUrl = getApiUrl("statuses/home_timeline.json");
+		RequestParams params = new RequestParams();
+		params.put("page", String.valueOf(page));
+		getClient().get(apiUrl, params, handler);
+	}
 }
