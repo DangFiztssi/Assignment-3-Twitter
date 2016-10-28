@@ -22,7 +22,7 @@ public class Tweet {
     @SerializedName("retweet_count")
     private int retweet;
 
-    @SerializedName("favourite_count")
+    @SerializedName("favourites_count")
     private int favorited;
 
     public String getCreateDate() {
@@ -49,4 +49,15 @@ public class Tweet {
         return favorited;
     }
 
+    @Override
+    public String toString() {
+        return "Tweet{" +
+                "createDate='" + createDate + '\'' +
+                ", isFavorited=" + isFavorited +
+                ", body='" + body + '\'' +
+                ", user=" + user +
+                ", retweet=" + retweet +
+                ", favorited=" + favorited +
+                '}';
+    }
 }
