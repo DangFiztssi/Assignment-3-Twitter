@@ -10,4 +10,8 @@
     <dimen name="height_photo_tweet">160dp</dimen>
     <dimen name="margin_between_element_tweet">8dp</dimen>
     <dimen name="size_font_user_name">18sp</dimen>
+    <dimen name="size_font_body_tweet">16sp</dimen>
+
+    <!--Detail tweet-->
+    <dimen name="distance_between_components">8dp</dimen>
 </resources>

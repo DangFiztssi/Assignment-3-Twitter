@@ -42,17 +42,27 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/tvNameTweet"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:textColor="@android:color/black"
                     android:textSize="@dimen/size_font_user_name"
                     android:textStyle="bold"
                     tools:text="billboard" />
+
+                <TextView
+                    android:id="@+id/tvScreenName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="4dp"
+                    android:gravity="center_vertical"
+                    android:textSize="@dimen/size_font_user_name"
+                    tools:text=" @ScreenName" />
             </LinearLayout>
 
             <TextView
@@ -60,8 +70,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/margin_between_element_tweet"
+                android:autoLink="all"
+                android:textColorLink="@android:color/holo_blue_light"
                 android:ellipsize="end"
-                android:maxLines="3"
+                android:maxLines="4"
+                android:lines="4"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/size_font_body_tweet"
                 tools:text="Be who you are and say what you feel, because those who mind don't matter, and those who matter don't mind.Be who you are and say what you feel, because those who mind don't matter, and those who matter don't mind." />
 
             <android.support.v7.widget.CardView
@@ -74,7 +89,7 @@
                 <ImageView
                     android:id="@+id/imgPhotoTweet"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/height_photo_tweet"
+                    android:layout_height="wrap_content"
                     android:adjustViewBounds="true"
                     android:scaleType="centerCrop"
                     tools:src="@drawable/sample" />
@@ -83,6 +98,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_between_element_tweet"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
 
@@ -94,17 +110,18 @@
                     android:orientation="horizontal">
 
                     <ImageView
+                        android:id="@+id/icRetweet"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/ic_count_retweet" />
+                        android:background="@drawable/ic_retweet" />
 
                     <TextView
-                        android:id="@+id/tvCountFavorite"
+                        android:id="@+id/tvRetweet"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingLeft="4dp"
-                        tools:text="0"
-                        android:textColor="@android:color/black" />
+                        android:textColor="@android:color/black"
+                        tools:text="0" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -115,17 +132,18 @@
                     android:orientation="horizontal">
 
                     <ImageView
+                        android:id="@+id/icFav"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/ic_count_favorite" />
+                        android:background="@drawable/ic_favorite" />
 
                     <TextView
-                        android:id="@+id/tvCountRetweet"
+                        android:id="@+id/tvFavourite"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingLeft="4dp"
-                        tools:text="0"
-                        android:textColor="@android:color/black" />
+                        android:textColor="@android:color/black"
+                        tools:text="0" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -148,6 +166,6 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@android:color/darker_gray"
-        android:paddingTop="24dp" />
+        android:layout_marginTop="18dp"
+        android:background="@android:color/darker_gray" />
 </LinearLayout>

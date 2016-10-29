@@ -22,8 +22,14 @@ public class Tweet {
     @SerializedName("retweet_count")
     private int retweet;
 
-    @SerializedName("favourites_count")
+    @SerializedName("favorite_count")
     private int favorited;
+
+    @SerializedName("retweeted")
+    private boolean isRetweeted;
+
+    @SerializedName("entities")
+    private Entities entities;
 
     public String getCreateDate() {
         return createDate;
@@ -47,6 +53,16 @@ public class Tweet {
 
     public int getFavorited() {
         return favorited;
+    }
+
+    public boolean isRetweeted() {
+        return isRetweeted;
+    }
+
+    public String getDisplayUrl(){
+        if(entities != null)
+            return entities.getUrl();
+        return "";
     }
 
     @Override
