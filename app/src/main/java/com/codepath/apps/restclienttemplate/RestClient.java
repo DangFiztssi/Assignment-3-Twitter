@@ -16,7 +16,7 @@ import org.scribe.builder.api.TwitterApi;
  * Specify the constants below to change the API being communicated with.
  * See a full list of supported API classes: 
  *   https://github.com/fernandezpablo85/scribe-java/tree/master/src/main/java/org/scribe/builder/api
- * Key and Secret are provided by the developer site for the given API i.e dev.twitter.com
+ * Key and Secret are provided by the developer site for the given API i.e dev.ic_twitter_button.com
  * Add methods for each relevant endpoint in the API.
  * 
  * NOTE: You may want to rename this object based on the service i.e TwitterClient or FlickrClient
@@ -56,5 +56,26 @@ public class RestClient extends OAuthBaseClient {
 		RequestParams params = new RequestParams();
 		params.put("page", String.valueOf(page));
 		getClient().get(apiUrl, params, handler);
+	}
+
+	public void postTweet(String body, JsonHttpResponseHandler handler){
+		String apiUrl = getApiUrl("statuses/update.json");
+		RequestParams params = new RequestParams();
+		params.put("status", body);
+		getClient().post(apiUrl, params, handler);
+	}
+
+	public void favoriteTweet(String id,JsonHttpResponseHandler handler){
+		String apiUrl = getApiUrl("favorites/create.json");
+		RequestParams params = new RequestParams();
+		params.put("id", id);
+		getClient().post(apiUrl, params, handler);
+	}
+
+	public void destroyFavoriteTweet(String id, JsonHttpResponseHandler handler){
+		String apiUrl = getApiUrl("favorites/destroy.json");
+		RequestParams params = new RequestParams();
+		params.put("id", id);
+		getClient().post(apiUrl, params, handler);
 	}
 }

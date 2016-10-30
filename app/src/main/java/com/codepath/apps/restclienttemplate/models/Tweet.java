@@ -1,12 +1,18 @@
 package com.codepath.apps.restclienttemplate.models;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.SerializedName;
 
 /**
  * Created by DangF on 10/26/16.
  */
 
-public class Tweet {
+public class Tweet implements Parcelable{
+    @SerializedName("id_str")
+    private String id;
+
     @SerializedName("created_at")
     private String createDate;
 
@@ -30,6 +36,34 @@ public class Tweet {
 
     @SerializedName("entities")
     private Entities entities;
+
+    protected Tweet(Parcel in) {
+        id = in.readString();
+        createDate = in.readString();
+        isFavorited = in.readByte() != 0;
+        body = in.readString();
+        user = in.readParcelable(User.class.getClassLoader());
+        retweet = in.readInt();
+        favorited = in.readInt();
+        isRetweeted = in.readByte() != 0;
+        entities = in.readParcelable(Entities.class.getClassLoader());
+    }
+
+    public static final Creator<Tweet> CREATOR = new Creator<Tweet>() {
+        @Override
+        public Tweet createFromParcel(Parcel in) {
+            return new Tweet(in);
+        }
+
+        @Override
+        public Tweet[] newArray(int size) {
+            return new Tweet[size];
+        }
+    };
+
+    public String getId() {
+        return id;
+    }
 
     public String getCreateDate() {
         return createDate;
@@ -59,6 +93,22 @@ public class Tweet {
         return isRetweeted;
     }
 
+    public void setCountRetweet(int retweet) {
+        this.retweet = retweet;
+    }
+
+    public void setCountFavorited(int favorited) {
+        this.favorited = favorited;
+    }
+
+    public void setRetweeted(boolean retweeted) {
+        isRetweeted = retweeted;
+    }
+
+    public void setFavorited(boolean favorited) {
+        isFavorited = favorited;
+    }
+
     public String getDisplayUrl(){
         if(entities != null)
             return entities.getUrl();
@@ -68,12 +118,33 @@ public class Tweet {
     @Override
     public String toString() {
         return "Tweet{" +
-                "createDate='" + createDate + '\'' +
+                "id='" + id + '\'' +
+                ", createDate='" + createDate + '\'' +
                 ", isFavorited=" + isFavorited +
                 ", body='" + body + '\'' +
                 ", user=" + user +
                 ", retweet=" + retweet +
                 ", favorited=" + favorited +
+                ", isRetweeted=" + isRetweeted +
+                ", entities=" + entities +
                 '}';
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(id);
+        dest.writeString(createDate);
+        dest.writeByte((byte) (isFavorited ? 1 : 0));
+        dest.writeString(body);
+        dest.writeParcelable(user, flags);
+        dest.writeInt(retweet);
+        dest.writeInt(favorited);
+        dest.writeByte((byte) (isRetweeted ? 1 : 0));
+        dest.writeParcelable(entities, flags);
     }
 }

@@ -14,4 +14,7 @@
 
     <!--Detail tweet-->
     <dimen name="distance_between_components">8dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="size_font_username">20sp</dimen>
+    <dimen name="size_font_tv">18sp</dimen>
 </resources>

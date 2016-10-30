@@ -8,9 +8,9 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
-        android:name="com.codepath.apps.restclienttemplate.RestApplication"
+        android:name=".RestApplication"
         android:allowBackup="true"
-        android:icon="@drawable/ic_launcher"
+        android:icon="@drawable/ic_launcher_app"
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
         <meta-data
@@ -21,9 +21,10 @@
             android:value="1" />
 
         <activity
-            android:name="com.codepath.apps.restclienttemplate.activity.LoginActivity"
+            android:name=".activity.LoginActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme">
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustResize|adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -40,8 +41,8 @@
                     android:scheme="oauth" />
             </intent-filter>
         </activity>
-        <activity android:name="com.codepath.apps.restclienttemplate.activity.MainActivity" />
-        <activity android:name="com.codepath.apps.restclienttemplate.activity.DetailTweetActivity"></activity>
+        <activity android:name=".activity.MainActivity" />
+        <activity android:name=".activity.DetailTweetActivity" />
     </application>
 
 </manifest>

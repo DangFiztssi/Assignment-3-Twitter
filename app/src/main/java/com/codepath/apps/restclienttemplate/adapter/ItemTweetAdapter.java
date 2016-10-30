@@ -2,14 +2,13 @@ package com.codepath.apps.restclienttemplate.adapter;
 
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.support.design.widget.Snackbar;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.codepath.apps.restclienttemplate.R;
 import com.codepath.apps.restclienttemplate.models.Tweet;
@@ -31,29 +30,40 @@ import butterknife.ButterKnife;
 public class ItemTweetAdapter extends RecyclerView.Adapter<ItemTweetAdapter.MyViewHolder> {
     public static final String TAG = ItemTweetAdapter.class.getSimpleName().toUpperCase();
 
-    List<Tweet> tweets = new ArrayList<>();
+    public List<Tweet> tweets = new ArrayList<>();
     private Listener listener;
 
-    public interface Listener{
+    public interface Listener {
         void onLoadMore();
+
         void onClick(Tweet tweet);
+
+        void onClickFavorite(String id, Result result);
+
+        void onDestroyFavorite(String id, Result result);
+    }
+
+    public interface Result {
+        void onSuccess();
+
+        void onFailure(Throwable throwable);
     }
 
     public ItemTweetAdapter() {
     }
 
-    public void getData(List<Tweet> tweets) {
+    public void getData(List<Tweet> newTweets) {
         this.tweets.clear();
-        this.tweets.addAll(tweets);
+        this.tweets.addAll(newTweets);
         notifyDataSetChanged();
     }
 
-    public void addData(List<Tweet> tweets) {
-        this.tweets.addAll(tweets);
-        notifyItemRangeInserted(tweets.size(), tweets.size());
+    public void addData(List<Tweet> newTweets) {
+        this.tweets.addAll(newTweets);
+        notifyItemRangeInserted(tweets.size(), newTweets.size());
     }
 
-    public void setListener(Listener listener){
+    public void setListener(Listener listener) {
         this.listener = listener;
     }
 
@@ -69,10 +79,13 @@ public class ItemTweetAdapter extends RecyclerView.Adapter<ItemTweetAdapter.MyVi
         final Tweet tweet = tweets.get(position);
 
 
-        if(!tweet.getDisplayUrl().equalsIgnoreCase(""))
+        if (!tweet.getDisplayUrl().equalsIgnoreCase(""))
             Picasso.with(holder.itemView.getContext())
-                    .load("https://g.twimg.com/about/feature-corporate/image/twitterbird_RGB.png")
+//                    .load("https://g.twimg.com/about/feature-corporate/image/twitterbird_RGB.png")
+                    .load(tweet.getDisplayUrl())
                     .into(holder.imgPhoto);
+        else
+            holder.imgPhoto.setVisibility(View.GONE);
 
         holder.tvRetweet.setText(tweet.getRetweet() + "");
         holder.tvFav.setText(tweet.getFavorited() + "");
@@ -84,10 +97,9 @@ public class ItemTweetAdapter extends RecyclerView.Adapter<ItemTweetAdapter.MyVi
                         new PatternEditableBuilder.SpannableClickedListener() {
                             @Override
                             public void onSpanClicked(String text) {
-                                Toast.makeText(holder.itemView.getContext(),"has click"+ text, Toast.LENGTH_SHORT).show();
                             }
                         })
-                .addPattern(Pattern.compile("\\#(\\w+)"),Color.parseColor("#ff33b5e5"))
+                .addPattern(Pattern.compile("\\#(\\w+)"), Color.parseColor("#ff33b5e5"))
                 .into(holder.tvBodyTweet);
 
         holder.tvTimeStamp.setText(AppUtils.getRelativeTimeAgo(tweet.getCreateDate()));
@@ -99,12 +111,12 @@ public class ItemTweetAdapter extends RecyclerView.Adapter<ItemTweetAdapter.MyVi
                 .load(tweet.getUser().getAvatar())
                 .into(holder.imgAvatar);
 
-        if(tweet.isFavorited())
+        if (tweet.isFavorited())
             holder.icFav.setImageResource(R.drawable.ic_favorite_checked);
         else
             holder.icFav.setImageResource(R.drawable.ic_favorite);
 
-        if(tweet.isRetweeted())
+        if (tweet.isRetweeted())
             holder.icRetweet.setImageResource(R.drawable.ic_retweet_checked);
         else
             holder.icRetweet.setImageResource(R.drawable.ic_retweet);
@@ -113,15 +125,72 @@ public class ItemTweetAdapter extends RecyclerView.Adapter<ItemTweetAdapter.MyVi
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.e(TAG, "onClick: " + tweet  );
                 listener.onClick(tweet);
             }
         });
 
         //Load More
-        if(position == tweets.size() - 1 && listener != null)
+        if (position == tweets.size() - 1 && listener != null)
             listener.onLoadMore();
+
+        setOnClick(holder, tweet);
     }
+
+    private void setOnClick(final MyViewHolder holder, final Tweet tweet) {
+        holder.icRetweet.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                tweet.setRetweeted(!tweet.isRetweeted());
+                if (tweet.isRetweeted())
+                    holder.icRetweet.setImageResource(R.drawable.ic_retweet_checked);
+                else
+                    holder.icRetweet.setImageResource(R.drawable.ic_retweet);
+            }
+        });
+
+        holder.icFav.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //favorite tweet
+                if (!tweet.isFavorited())
+                    listener.onClickFavorite(tweet.getId(), new Result() {
+                        @Override
+                        public void onSuccess() {
+                            tweet.setFavorited(true);
+                            tweet.setCountFavorited(tweet.getFavorited() + 1);
+                            holder.icFav.setImageResource(R.drawable.ic_favorite_checked);
+                            holder.tvFav.setText(tweet.getFavorited() + "");
+                        }
+
+                        @Override
+                        public void onFailure(Throwable throwable) {
+                            Snackbar snackbar = AppUtils.showSnackBar(holder.itemView,
+                                    holder.itemView.getResources().getString(R.string.message_error));
+                            snackbar.show();
+                        }
+                    });
+                //Unfavorite tweet
+                else
+                    listener.onDestroyFavorite(tweet.getId(), new Result() {
+                        @Override
+                        public void onSuccess() {
+                            tweet.setFavorited(false);
+                            tweet.setCountFavorited(tweet.getFavorited() - 1);
+                            holder.icFav.setImageResource(R.drawable.ic_favorite);
+                            holder.tvFav.setText(tweet.getFavorited() + "");
+                        }
+
+                        @Override
+                        public void onFailure(Throwable throwable) {
+                            Snackbar snackbar = AppUtils.showSnackBar(holder.itemView,
+                                    holder.itemView.getResources().getString(R.string.message_error));
+                            snackbar.show();
+                        }
+                    });
+            }
+        });
+    }
+
 
     @Override
     public int getItemCount() {

@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
-import android.widget.Toast;
 
 import com.codepath.apps.restclienttemplate.R;
 import com.codepath.apps.restclienttemplate.RestClient;
@@ -30,8 +29,6 @@ public class LoginActivity extends OAuthLoginActionBarActivity<RestClient> {
 	// i.e Display application "homepage"
 	@Override
 	public void onLoginSuccess() {
-
-		Toast.makeText(this, "success", Toast.LENGTH_LONG).show();
 		 Intent i = new Intent(this, MainActivity.class);
 		 startActivity(i);
 
