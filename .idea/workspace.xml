@@ -10,13 +10,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="05cfe270-6627-4125-884d-6538ab315d30" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/layout/waiting_dialog.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/app.iml" afterPath="$PROJECT_DIR$/app/app.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/codepath/apps/restclienttemplate/Activity/MainActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/codepath/apps/restclienttemplate/Activity/MainActivity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/codepath/apps/restclienttemplate/RestClient.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/codepath/apps/restclienttemplate/RestClient.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/codepath/apps/restclienttemplate/presenter/MainTweetPresenter.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/codepath/apps/restclienttemplate/presenter/MainTweetPresenter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/codepath/apps/restclienttemplate/utils/AppUtils.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/codepath/apps/restclienttemplate/utils/AppUtils.java" />
     </list>
     <ignored path="Assignment-3-Twitter.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -49,10 +44,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="RestClient.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="RestClient.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/codepath/apps/restclienttemplate/RestClient.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="259">
+            <state relative-caret-position="97">
               <caret line="23" column="3" selection-start-line="23" selection-start-column="3" selection-end-line="23" selection-end-column="3" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -94,7 +89,7 @@
       <file leaf-file-name="RestApplication.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/codepath/apps/restclienttemplate/RestApplication.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="414">
+            <state relative-caret-position="181">
               <caret line="32" column="33" selection-start-line="32" selection-start-column="33" selection-end-line="32" selection-end-column="33" />
               <folding />
             </state>
@@ -134,10 +129,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MainActivity.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="MainActivity.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/codepath/apps/restclienttemplate/activity/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="203">
+            <state relative-caret-position="455">
               <caret line="119" column="36" selection-start-line="119" selection-start-column="36" selection-end-line="119" selection-end-column="36" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -1950,11 +1945,11 @@
         <option value="$PROJECT_DIR$/app/build.gradle" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/item_tweet.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/codepath/apps/restclienttemplate/RestClient.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/codepath/apps/restclienttemplate/utils/AppUtils.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/waiting_dialog.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/codepath/apps/restclienttemplate/presenter/MainTweetPresenter.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/codepath/apps/restclienttemplate/activity/MainActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/codepath/apps/restclienttemplate/RestClient.java" />
       </list>
     </option>
   </component>
@@ -2315,7 +2310,7 @@
     <property name="settings.editor.splitter.proportion" value="0.2" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../Assignment 2 New York Times/NewYorkTimes" />
     <property name="SearchEverywhereHistoryKey" value="AndroidM&#9;FILE&#9;file://D:/Git/Coder School/Assignment-3-Twitter/app/src/main/AndroidManifest.xml" />
-    <property name="device.picker.selection" value="LGV32f169b409" />
+    <property name="device.picker.selection" value="Nexus_5_API_23" />
     <property name="UI_DESIGNER_EDITOR_MODE.NlPaletteManager-NlPreviewForm.SHOW" value="false" />
     <property name="android.project.structure.last.selected" value="app" />
     <property name="android.project.structure.proportion" value="0.15" />
@@ -2853,16 +2848,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/codepath/apps/restclienttemplate/RestClient.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="259">
-          <caret line="23" column="3" selection-start-line="23" selection-start-column="3" selection-end-line="23" selection-end-column="3" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/waiting_dialog.xml">
       <provider editor-type-id="android-designer2">
         <state />
@@ -2890,14 +2875,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/codepath/apps/restclienttemplate/RestApplication.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="414">
-          <caret line="32" column="33" selection-start-line="32" selection-start-column="33" selection-end-line="32" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/codepath/apps/restclienttemplate/activity/LoginActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="72">
@@ -2916,8 +2893,26 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/codepath/apps/restclienttemplate/activity/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="203">
+        <state relative-caret-position="455">
           <caret line="119" column="36" selection-start-line="119" selection-start-column="36" selection-end-line="119" selection-end-column="36" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/codepath/apps/restclienttemplate/RestApplication.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="181">
+          <caret line="32" column="33" selection-start-line="32" selection-start-column="33" selection-end-line="32" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/codepath/apps/restclienttemplate/RestClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="97">
+          <caret line="23" column="3" selection-start-line="23" selection-start-column="3" selection-end-line="23" selection-end-column="3" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
