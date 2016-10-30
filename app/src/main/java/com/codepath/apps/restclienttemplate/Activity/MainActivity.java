@@ -1,5 +1,6 @@
 package com.codepath.apps.restclienttemplate.activity;
 
+import android.app.Dialog;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -46,7 +47,7 @@ public class MainActivity extends AppCompatActivity implements ComposeTweetDialo
     Toolbar toolbar;
 
     MainTweetPresenter presenter;
-
+    public Dialog loading;
 
     FragmentManager manager1 = getSupportFragmentManager();
     ComposeTweetDialogFragment df = ComposeTweetDialogFragment.newInstance();
@@ -56,6 +57,8 @@ public class MainActivity extends AppCompatActivity implements ComposeTweetDialo
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+        loading = AppUtils.getWaitingDialog(this);
+        loading.show();
 
         setSupportActionBar(toolbar);
 
@@ -70,6 +73,7 @@ public class MainActivity extends AppCompatActivity implements ComposeTweetDialo
         refresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
+                loading.show();
                 presenter.fetchData(1);
             }
         });
@@ -87,6 +91,7 @@ public class MainActivity extends AppCompatActivity implements ComposeTweetDialo
     @Override
     public void postTweet(final String tweet) {
 
+        loading.show();
         RestApplication.getRestClient().postTweet(tweet, new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
@@ -96,6 +101,7 @@ public class MainActivity extends AppCompatActivity implements ComposeTweetDialo
                 presenter.addPostTweet(newTweet);
                 rvTweets.scrollToPosition(0);
                 df.dismiss();
+                loading.dismiss();
             }
 
             @Override
@@ -107,9 +113,11 @@ public class MainActivity extends AppCompatActivity implements ComposeTweetDialo
                         @Override
                         public void onClick(View v) {
                             postTweet(tweet);
+                            loading.dismiss();
                         }
                     })
                             .setActionTextColor(getColor(android.R.color.holo_blue_bright));
+                    snackbar.show();
                 }
             }
         });

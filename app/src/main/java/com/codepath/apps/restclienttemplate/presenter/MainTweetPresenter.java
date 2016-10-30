@@ -103,17 +103,20 @@ public class MainTweetPresenter {
 
                 activity.loadMore.setVisibility(View.GONE);
                 activity.refresh.setRefreshing(false);
+                activity.loading.dismiss();
             }
 
             @Override
             public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
                 super.onFailure(statusCode, headers, responseString, throwable);
                 Log.e(TAG, "onFailure: " + throwable );
+                activity.loading.dismiss();
             }
 
             @Override
             public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
                 super.onFailure(statusCode, headers, throwable, errorResponse);
+                activity.loading.dismiss();
             }
         });
     }
